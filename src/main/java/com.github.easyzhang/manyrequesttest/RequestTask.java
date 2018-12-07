@@ -19,10 +19,10 @@ public class RequestTask implements Runnable {
     private static final String BASE_URL = "up-manager75.djtest.cn";
     private static final String url = "https://up-manager75.djtest.cn/order/getOrderById?id=";
 
-    private int idStart;
-    private int idEnd;
+    private long idStart;
+    private long idEnd;
 
-    public RequestTask(int idStart,int idEnd){
+    public RequestTask(long idStart,long idEnd){
         this.idStart = idStart;
         this.idEnd = idEnd;
     }
