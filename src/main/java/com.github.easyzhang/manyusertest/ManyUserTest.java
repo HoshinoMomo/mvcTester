@@ -13,34 +13,37 @@ import java.io.IOException;
 
 public class ManyUserTest {
 
-    private static final String url = "https://up-manager75.djtest.cn/order/getOrderById?id=181213405510691012";
+    private static final String BASE_URL = "up-manager75.djtest.cn";
 
     public static void main(String[] args) throws IOException {
-        for(int i=0;i<300;i++) {
+
+        for(int i=1;i<=200;i++) {
+
+            String url = "https://up-manager75.djtest.cn/order/getOrderById?id="+i;
 
             CookieStore cookieStore = new BasicCookieStore();
 
             BasicClientCookie city = new BasicClientCookie("cityIds", "1,2");
             city.setVersion(0);
-            city.setDomain("up-manager75.djtest.cn");   //设置范围
+            city.setDomain(BASE_URL);   //设置范围
             city.setPath("/");
             cookieStore.addCookie(city);
 
-            BasicClientCookie name = new BasicClientCookie("user", (i+1200)+"");
+            BasicClientCookie name = new BasicClientCookie("user", (i)+"");
             name.setVersion(0);
-            name.setDomain("up-manager75.djtest.cn");   //设置范围
+            name.setDomain(BASE_URL);   //设置范围
             name.setPath("/");
             cookieStore.addCookie(name);
 
             BasicClientCookie uid = new BasicClientCookie("uid", "123");
             uid.setVersion(0);
-            uid.setDomain("up-manager75.djtest.cn");   //设置范围
+            uid.setDomain(BASE_URL);   //设置范围
             uid.setPath("/");
             cookieStore.addCookie(uid);
 
             BasicClientCookie phone = new BasicClientCookie("phone", "13012341234");
             phone.setVersion(0);
-            phone.setDomain("up-manager75.djtest.cn");   //设置范围
+            phone.setDomain(BASE_URL);   //设置范围
             phone.setPath("/");
             cookieStore.addCookie(phone);
 
@@ -49,13 +52,8 @@ public class ManyUserTest {
             //第二步：搞一个get对象
             HttpGet httpGet = new HttpGet(url);
 
-            HttpResponse httpResponse = httpClient.execute(httpGet);
+            httpClient.execute(httpGet);
 
-            try {
-                Thread.sleep(999);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
